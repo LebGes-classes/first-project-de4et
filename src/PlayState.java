@@ -14,6 +14,8 @@ public class PlayState implements State {
 
 	public String update() {
 		if (player.getPosition().equals(map.getEndPoint())) {
+			System.out.println("Ты победил!");
+			Game.sleep(2);
 			return "menu";
 		}
 

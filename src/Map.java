@@ -13,8 +13,8 @@ public class Map {
 
 		this.arr = new int[height][width];
 
-		this.startPoint = new Point(0, 0);
-		this.endPoint = new Point(0, 0);
+		this.startPoint = new Point(0, 1);
+		this.endPoint = new Point(width - 1, height - 2);
 	}
 
 	public static Map emptyMap(int width, int height) {
@@ -23,12 +23,14 @@ public class Map {
 		map.putHorizontalLine(new Point(0, height - 1), new Point(width - 1, height - 1), 1);
 		map.putVerticalLine(new Point(0, 0), new Point(0, height - 1), 1);
 		map.putVerticalLine(new Point(width - 1, 0), new Point(width - 1, height - 1), 1);
-		map.generateStartEndPoint();
 		return map;
 	}
 
 	public static Map generateMap(int width, int height) {
-		Map map = emptyMap(width, height);
+		Map map = new Map(width, height);
+		MazeGenerator mazeGenerator = new MazeGenerator(height, width);
+		int[][] maze = mazeGenerator.generateMaze();
+		map.setArr(maze);
 		return map;
 	}
 
@@ -55,11 +57,7 @@ public class Map {
 			return false;
 		}
 
-		if (arr[curPos.y + y][curPos.x + x] == 1) {
-			return false;
-		}
-
-		return true;
+		return arr[curPos.y + y][curPos.x + x] != 1;
 	}
 
 	public int[][] getArray() {
@@ -102,14 +100,11 @@ public class Map {
 		}
 	}
 
-	private void generateStartEndPoint() {
-		this.startPoint.x = 0;
-		this.startPoint.y = Game.random.nextInt(this.height - 2) + 1;
-
-		this.endPoint.y = Game.random.nextInt(this.height - 2) + 1;
-		this.endPoint.x = this.width - 1;
-
-		this.arr[this.startPoint.y][this.startPoint.x] = 0;
-		this.arr[this.endPoint.y][this.endPoint.x] = 0;
+	private void setArr(int[][] newArr) {
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				this.arr[i][j] = newArr[i][j];
+			}
+		}
 	}
 }

@@ -22,7 +22,7 @@ public class Game {
 		while (true) {
 			clearScreen();
 
-			if (state.update() == "exit") {
+			if (state.update().equals("exit")) {
 				break;
 			}
 

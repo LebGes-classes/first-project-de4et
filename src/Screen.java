@@ -41,4 +41,5 @@ public class Screen {
 	public int getHeight() {
 		return this.height;
 	}
+
 }
