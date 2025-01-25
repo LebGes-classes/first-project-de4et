@@ -1,15 +1,12 @@
-import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-	static Random random;
 	static GameState state;
 	static Screen screen;
 
 	public static void main(String[] args) {
 		System.out.println("Starting game...");
 
-		random = new Random();
 		screen = new Screen();
 		state = new GameState();
 
@@ -77,11 +74,13 @@ public class Game {
 	}
 
 	public static void clearScreen() {
-		try {
-			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-		} catch (Exception E) {
-			System.out.println(E);
-		}
+		// try {
+		// 	new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+		// } catch (Exception E) {
+		// 	System.out.println(E);
+		// }
+		System.out.print("\033[H\033[2J");
+        System.out.flush();
 		screen.clear();
 	}
 }

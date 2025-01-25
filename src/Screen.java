@@ -1,6 +1,6 @@
 public class Screen {
 	static final int DEFAULT_SCREEN_WIDTH = 100;
-	static final int DEFAULT_SCREEN_HEIGHT = 50;
+	static final int DEFAULT_SCREEN_HEIGHT = 42;
 
 	private char[][] arr;
 
